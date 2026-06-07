@@ -1,0 +1,79 @@
+Priya Sharma
+priya.sharma@email.com | +91 98765 43210 | Bengaluru, India | linkedin.com/in/priyasharma
+
+SUMMARY
+Aspiring product manager with 1.5 years of experience in business analysis and product internships. 
+Data-driven and user-focused, with hands-on experience in requirement gathering, user research, 
+and cross-functional collaboration. Skilled in SQL, data analysis, and prototyping.
+
+SKILLS
+SQL (intermediate), Python (basic), Excel / Google Sheets, Figma, JIRA, Confluence, 
+User Research, Competitive Analysis, A/B Testing (familiar), Agile / Scrum
+
+EXPERIENCE
+
+Business Analyst | Zyla Health | Bengaluru | Jan 2024 – Present
+- Analyzed user engagement data for the health platform using SQL and Excel, identifying 
+  drop-off patterns that led to a 12% improvement in weekly active user retention.
+- Collaborated with product and engineering teams to document business requirements, 
+  user stories, and acceptance criteria for 3 major feature releases.
+- Conducted competitive analysis of 8 health-tech competitors and presented strategic 
+  recommendations to the VP of Product.
+- Built and maintained dashboards in Google Sheets and Metabase to track product KPIs 
+  across the growth and retention teams.
+
+Product Intern | PayNearby | Mumbai (Remote) | Jul 2023 – Dec 2023
+- Assisted the product team in writing PRDs and user stories for a new merchant onboarding 
+  flow, reducing drop-off by 18% in the first month post-launch.
+- Performed user interviews with 25+ small merchants to understand pain points in the 
+  existing app experience, synthesizing findings into actionable UX recommendations.
+- Coordinated with engineering and design teams during sprint planning and daily stand-ups, 
+  ensuring timely delivery of 4 product milestones.
+- Conducted A/B testing on push notification copy and timing, achieving a 7% increase 
+  in click-through rate.
+
+PROJECTS
+
+Customer Churn Prediction | Academic Project
+- Built a logistic regression model in Python to predict customer churn for a SaaS dataset.
+- Cleaned and analyzed 10,000+ customer records using pandas and SQLite.
+- Presented data-driven retention strategies based on feature importance analysis.
+
+Fintech App UX Redesign | Case Study
+- Conducted heuristic evaluation and usability testing for a fintech budgeting app.
+- Designed low-fidelity wireframes in Figma and validated with 12 users.
+- Proposed a simplified onboarding flow projected to reduce drop-off by 25%.
+
+EDUCATION
+
+B.Tech Computer Science | VIT Vellore | 2018 – 2022
+- Dean's List (3 semesters)
+- Courses: Data Structures, Machine Learning, HCI, Database Systems
+- Member of Product Management Club
+
+CERTIFICATIONS
+Google Data Analytics Professional Certificate (2023)
+
+- Built and maintained REST APIs serving 500K+ daily requests using Node.js and Express
+- Led migration of legacy jQuery dashboard to React, improving page load time by 40%
+- Designed PostgreSQL schema for new billing module, reducing invoice processing time by 60%
+- Mentored 2 junior engineers through onboarding and first production deployments
+
+Junior Developer | Startuply Inc | Jun 2020 – Dec 2021
+- Developed customer-facing features in React and TypeScript for a SaaS analytics platform
+- Wrote unit and integration tests, increasing code coverage from 45% to 82%
+- Built internal CLI tool in Python that automated data export workflows, saving 10 hrs/week
+- Collaborated with design team to implement responsive UI components
+
+PROJECTS
+
+DevMetrics | Personal Project
+- Open-source CLI tool that aggregates GitHub and Jira metrics into a single dashboard
+- Built with TypeScript, Node.js, and SQLite; 200+ stars on GitHub
+
+EDUCATION
+
+B.S. Computer Science | University of California, Davis | 2016 – 2020
+
+CERTIFICATIONS
+AWS Cloud Practitioner (2023)

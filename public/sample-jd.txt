@@ -1,0 +1,40 @@
+Associate Product Manager — Meesho (Bengaluru)
+
+About the Role
+Meesho is looking for an Associate Product Manager to join our consumer product team. 
+You will work on defining features for millions of users across Bharat, running experiments, 
+and collaborating with engineering and design to ship high-impact product improvements.
+
+Requirements
+- 0-2 years of experience in product management, business analysis, or a related role
+- Strong analytical skills with proficiency in SQL — you should be comfortable querying data independently
+- User empathy and a deep curiosity about customer behavior
+- Familiarity with A/B testing and experimentation frameworks
+- Excellent written and verbal communication skills
+- Ability to work effectively with engineering, design, and business teams
+
+Preferred Qualifications
+- Experience with product analytics tools such as Mixpanel, Amplitude, or Google Analytics
+- Prior internship or project experience in product management
+- Understanding of wireframing tools like Figma or Balsamiq
+- Background in e-commerce or consumer internet
+
+Tools You Will Use
+- SQL, Excel / Google Sheets
+- Mixpanel or Amplitude
+- JIRA, Confluence
+- Figma
+
+Responsibilities
+- Define product requirements and write clear PRDs and user stories
+- Analyze product metrics and run A/B experiments to validate hypotheses
+- Work closely with engineering, design, and data teams to ship product improvements
+- Conduct user research and competitive analysis to inform product strategy
+- Track and report on key product KPIs to stakeholders
+- Contribute to the product roadmap and prioritization process
+
+Why Join Meesho?
+- Work on products used by 150M+ monthly active users
+- Flat hierarchy with high ownership from day one
+- Bengaluru office with flexible hybrid work policy
+
