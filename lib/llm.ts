@@ -158,7 +158,7 @@ export async function callLLM<T>(
   options?: { temperature?: number; maxTokens?: number },
 ): Promise<T> {
   const temperature = options?.temperature ?? 0;
-  const maxTokens = options?.maxTokens ?? 2000;
+  const maxTokens = options?.maxTokens ?? 4096;
 
   // 1. Call DeepSeek
   const rawText = await callDeepSeek(systemPrompt, userPrompt, temperature, maxTokens);

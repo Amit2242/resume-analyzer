@@ -56,7 +56,10 @@ export async function POST(request: Request) {
 
     // ── Call LLM ───────────────────────────────────────────────
     const { systemPrompt, userPrompt } = buildResumeParserPrompt(truncateToTokenLimit(rawText));
-    const result = await callLLM(systemPrompt, userPrompt, ResumeProfileSchema);
+    const result = await callLLM(systemPrompt, userPrompt, ResumeProfileSchema, {
+      maxTokens: 4096,
+      temperature: 0,
+    });
 
     return NextResponse.json(result);
   } catch (err: unknown) {
