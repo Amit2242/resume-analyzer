@@ -16,4 +16,7 @@ export type {
   GapAnalysis,
   TailoringRun,
   APIError,
+  AnalysisIssue,
+  SectionScore,
+  ResumeAnalysis,
 } from "@/lib/schemas";

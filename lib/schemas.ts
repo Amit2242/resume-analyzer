@@ -166,3 +166,53 @@ export const APIErrorSchema = z.object({
 });
 
 export type APIError = z.infer<typeof APIErrorSchema>;
+
+// ── Resume Scorecard Analysis ──────────────────────────────────
+export const AnalysisIssueSchema = z.object({
+  name: z.string(),
+  severity: z.enum(["error", "warning", "info", "success"]),
+  message: z.string(),
+  suggestion: z.string().optional(),
+  count: z.number().optional(),
+  items: z.array(z.string()).optional(),
+});
+
+export type AnalysisIssue = z.infer<typeof AnalysisIssueSchema>;
+
+export const SectionScoreSchema = z.object({
+  name: z.string(),
+  score: z.number().min(0).max(100),
+  issues: z.array(AnalysisIssueSchema).default([]),
+  isPremium: z.boolean().default(false),
+});
+
+export type SectionScore = z.infer<typeof SectionScoreSchema>;
+
+export const ResumeAnalysisSchema = z.object({
+  overallScore: z.number().min(0).max(100),
+  totalIssues: z.number(),
+  sections: z.object({
+    content: SectionScoreSchema,
+    atsEssentials: SectionScoreSchema,
+    hrRedFlags: SectionScoreSchema,
+    discrimination: SectionScoreSchema,
+    seniority: SectionScoreSchema,
+    tailoring: SectionScoreSchema,
+  }),
+  quantifiedBullets: z.array(z.object({
+    original: z.string(),
+    suggestion: z.string(),
+  })).optional().default([]),
+  atsParsed: z.object({
+    rate: z.number().min(0).max(100),
+    message: z.string(),
+  }),
+  spellingErrors: z.array(z.object({
+    word: z.string(),
+    suggestion: z.string(),
+  })).default([]),
+  repeatedWords: z.array(z.string()).default([]),
+  suggestion: z.string(),
+});
+
+export type ResumeAnalysis = z.infer<typeof ResumeAnalysisSchema>;

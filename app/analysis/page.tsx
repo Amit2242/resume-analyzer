@@ -10,7 +10,7 @@ import StepIndicator from "@/components/StepIndicator";
 import ScoreCard from "@/components/ScoreCard";
 import GapAnalysis from "@/components/GapAnalysis";
 import { useAppStore } from "@/store/useAppStore";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight, Loader2, BarChart3 } from "lucide-react";
 import { toast } from "sonner";
 import type { JobDescriptionProfile } from "@/lib/schemas";
 
@@ -142,7 +142,16 @@ export default function AnalysisPage() {
         </div>
       </div>
 
-      <div className="mt-8 flex justify-center">
+      <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+        <Button
+          variant="outline"
+          size="lg"
+          className="gap-2"
+          onClick={() => router.push("/scorecard")}
+        >
+          <BarChart3 className="h-4 w-4" />
+          View Full Scorecard
+        </Button>
         <Button size="lg" className="gap-2" disabled={isTailoring} onClick={handleGenerate}>
           {isTailoring ? (
             <>
