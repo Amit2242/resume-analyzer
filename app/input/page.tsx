@@ -92,16 +92,24 @@ export default function InputPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        toast.error(data.message ?? "Failed to parse file");
+        let msg = data.message ?? "Failed to parse file";
+        if (data.code === "PARSE_ERROR" && fileType === "pdf") {
+          msg = "Could not extract text from this PDF. Try pasting the resume text manually instead.";
+        }
+        toast.error(msg);
         return;
       }
 
-      // Store parsed profile and show placeholder text
+      // Store parsed profile — set a flag so handleAnalyze knows to skip LLM re-parse
       store.resumeParsed = data;
-      const placeholder = `[Parsed from ${file.name} — ${data.skills?.length ?? 0} skills, ${data.experience?.length ?? 0} roles]`;
-      store.setResume(placeholder);
-      setResumeText(placeholder);
-      toast.success(`Parsed ${file.name}`);
+      // Store a UUID marker so parseResume() can detect file-uploaded state
+      const fileMarker = `__FILE_UPLOADED__${Date.now()}`;
+      store.setResume(fileMarker);
+      setResumeText(fileMarker);
+
+      const skillCount = data.skills?.length ?? 0;
+      const roleCount = data.experience?.length ?? 0;
+      toast.success(`Parsed ${file.name} — ${skillCount} skills, ${roleCount} roles`);
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Failed to upload file");
     } finally {

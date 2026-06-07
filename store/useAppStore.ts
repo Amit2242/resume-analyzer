@@ -131,6 +131,11 @@ export const useAppStore = create<AppState>()(
       parseResume: async () => {
         const { resumeRaw } = get();
         if (!resumeRaw) return;
+        // Skip if resume was uploaded as a file (already parsed via API)
+        if (resumeRaw.startsWith("__FILE_UPLOADED__")) {
+          console.log("[parseResume] Skipping — resume was parsed from file upload");
+          return;
+        }
         set({ isLoading: true, error: null });
         try {
           const res = await fetch("/api/parse-resume", {

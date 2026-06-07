@@ -5,12 +5,14 @@
  * Throws { code: 'PARSE_ERROR', message: '...' } on failure.
  */
 export async function extractTextFromPDF(buffer: Buffer): Promise<string> {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const pdfParse = require("pdf-parse");
   try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const pdfParse = require("pdf-parse");
     const data = await pdfParse(buffer);
+    console.log(`[parsePDF] extracted ${data.text?.length ?? 0} chars, ${data.numpages ?? "?"} pages`);
     return data.text ?? "";
-  } catch {
+  } catch (err) {
+    console.error("[parsePDF] Failed:", err instanceof Error ? err.message : String(err));
     throw { code: "PARSE_ERROR" as const, message: "Failed to parse PDF" };
   }
 }
