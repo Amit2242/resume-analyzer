@@ -145,14 +145,14 @@ export const MOCK_ORIGINAL_SCORE: MatchScore = {
 
 // ── Tailored Match Score ───────────────────────────────────────
 export const MOCK_TAILORED_SCORE: MatchScore = {
-  overallScore: 84,
-  skillCoverageScore: 82,
-  responsibilityAlignmentScore: 85,
-  keywordScore: 88,
-  seniorityScore: 78,
-  criticalMissingRequirements: ["SQL proficiency"],
+  overallScore: 88,
+  skillCoverageScore: 88,
+  responsibilityAlignmentScore: 90,
+  keywordScore: 92,
+  seniorityScore: 82,
+  criticalMissingRequirements: [],
   explanation:
-    "After tailoring, Priya's engineering experience is reframed to highlight product thinking, data-driven decisions, and cross-functional collaboration. The remaining gap is SQL proficiency, which she should address independently. The tailored resume significantly improves PM keyword alignment while staying truthful to her experience.",
+    "After tailoring, Priya's engineering experience is strongly reframed to highlight product thinking, data-driven decisions, stakeholder collaboration, and user research. The tailored resume now closely aligns with APM requirements — product sense, metrics analysis, cross-functional work, and feature ownership are clearly demonstrated. Remaining gaps are minor and can be addressed with learning markers.",
 };
 
 // ── Tailored Bullet Rewrites ───────────────────────────────────
@@ -242,7 +242,7 @@ export const MOCK_TAILORED_RESUME: TailoredResume = {
     "A/B Testing",
     "User Research",
     "Roadmap Planning",
-    "SQL (learning)",
+    "SQL (intermediate)",
     "REST APIs",
     "PostgreSQL",
     "Git",

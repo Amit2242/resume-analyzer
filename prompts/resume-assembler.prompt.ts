@@ -13,8 +13,9 @@ export function buildResumeAssemblerPrompt(
     systemPrompt:
       SYSTEM_GUARDRAILS +
       "\n\nAssemble a final tailored resume from these rewritten sections. " +
-      "Reorder skills to put the most JD-relevant ones first. " +
-      "Polish the summary to align with the role without adding unsupported claims. " +
+      "Reorder skills to put the most JD-relevant ones first — move JD-required skills to the top. " +
+      "Polish the summary to explicitly mention 3-4 key JD requirements that match the user's experience. " +
+      "GOAL: Create a resume that scores 85-90% alignment with the job description. " +
       "Return ONLY valid JSON — no markdown, no backticks, no explanation. " +
       "Every bullet in tailoredExperience must be an object, not a string. " +
       "Each bullet object must have: original, tailored, changeReason, " +
