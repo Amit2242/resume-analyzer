@@ -51,10 +51,10 @@ export default function ResumeInput({
       <input
         ref={fileInputRef}
         type="file"
-        accept=".pdf,.docx"
+        accept="application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.pdf,.docx"
         className="hidden"
         onChange={handleFileChange}
-        aria-label="Upload PDF or DOCX file"
+        aria-label="Upload a PDF or DOCX file"
       />
 
       <Button
@@ -63,7 +63,8 @@ export default function ResumeInput({
         className="w-fit gap-2"
         disabled={isUploading}
         onClick={() => fileInputRef.current?.click()}
-        aria-label="Upload PDF or DOCX file"
+        aria-label="Upload a PDF or DOCX file"
+        title="Supported: .pdf, .docx"
       >
         {isUploading ? (
           <>

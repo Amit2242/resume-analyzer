@@ -10,6 +10,7 @@ import JDInput from "@/components/JDInput";
 import DisclaimerBanner from "@/components/DisclaimerBanner";
 import { useAppStore } from "@/store/useAppStore";
 import { MOCK_RUN } from "@/lib/mockData";
+import type { ResumeProfile } from "@/lib/schemas";
 import { ArrowRight, FileText, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -89,26 +90,30 @@ export default function InputPage() {
         body: JSON.stringify({ fileBase64: base64, fileType }),
       });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        let msg = data.message ?? "Failed to parse file";
-        if (data.code === "PARSE_ERROR" && fileType === "pdf") {
-          msg = "Could not extract text from this PDF. Try pasting the resume text manually instead.";
-        }
-        toast.error(msg);
+      let data: unknown;
+      try {
+        data = await res.json();
+      } catch {
+        toast.error("Server returned an invalid response. Try again or paste your resume as text.");
         return;
       }
 
-      // Store parsed profile — set a flag so handleAnalyze knows to skip LLM re-parse
-      store.resumeParsed = data;
+      if (!res.ok) {
+        const errData = data as { message?: string };
+        toast.error(errData?.message ?? "Could not parse this file. Try pasting the text manually.");
+        return;
+      }
+
+      // Store parsed profile
+      store.resumeParsed = data as ResumeProfile;
       // Store a UUID marker so parseResume() can detect file-uploaded state
       const fileMarker = `__FILE_UPLOADED__${Date.now()}`;
       store.setResume(fileMarker);
       setResumeText(fileMarker);
 
-      const skillCount = data.skills?.length ?? 0;
-      const roleCount = data.experience?.length ?? 0;
+      const profile = data as { skills?: unknown[]; experience?: unknown[] };
+      const skillCount = profile.skills?.length ?? 0;
+      const roleCount = profile.experience?.length ?? 0;
       toast.success(`Parsed ${file.name} — ${skillCount} skills, ${roleCount} roles`);
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Failed to upload file");

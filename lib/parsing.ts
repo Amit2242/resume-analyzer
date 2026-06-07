@@ -9,11 +9,32 @@ export async function extractTextFromPDF(buffer: Buffer): Promise<string> {
   const pdfParse = require("pdf-parse");
   try {
     const data = await pdfParse(buffer);
-    console.log(`[parsePDF] extracted ${data.text?.length ?? 0} chars, ${data.numpages ?? "?"} pages`);
-    return data.text ?? "";
-  } catch (err) {
-    console.error("[parsePDF] Failed:", err instanceof Error ? err.message : String(err));
-    throw { code: "PARSE_ERROR" as const, message: "Failed to parse PDF" };
+    const text = data.text?.trim() ?? "";
+    console.log(`[parsePDF] extracted ${text.length} chars, ${data.numpages ?? "?"} pages`);
+
+    if (text.length < 20) {
+      throw {
+        code: "PARSE_ERROR" as const,
+        message:
+          "This PDF appears to be a scanned image or doesn't contain extractable text. pdf-parse could only extract " +
+          `${text.length} characters. Please paste your resume as plain text instead.`,
+      };
+    }
+
+    return text;
+  } catch (err: unknown) {
+    // If it's already our structured error, re-throw
+    if ((err as { code?: string })?.code === "PARSE_ERROR") {
+      throw err;
+    }
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("[parsePDF] Failed:", msg);
+    throw {
+      code: "PARSE_ERROR" as const,
+      message:
+        "Could not read this PDF file. The file may be corrupted, password-protected, or a scanned image. " +
+        "Please paste your resume as plain text instead.",
+    };
   }
 }
 
