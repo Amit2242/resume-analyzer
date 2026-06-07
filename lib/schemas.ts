@@ -4,37 +4,38 @@
 import { z } from "zod";
 
 // ── Resume Profile ──────────────────────────────────────────────
+
 export const ContactSchema = z.object({
-  name: z.string().optional(),
-  email: z.string().optional(),
-  phone: z.string().optional(),
-  location: z.string().optional(),
-  linkedin: z.string().optional(),
-  website: z.string().optional(),
+  name: z.string().catch("").optional(),
+  email: z.string().catch("").optional(),
+  phone: z.string().catch("").optional(),
+  location: z.string().catch("").optional(),
+  linkedin: z.string().catch("").optional(),
+  website: z.string().catch("").optional(),
 });
 
-export const ExperienceBulletSchema = z.object({ text: z.string() });
+export const ExperienceBulletSchema = z.object({ text: z.string().catch("") });
 
 export const ExperienceSchema = z.object({
-  company: z.string(),
-  title: z.string(),
-  startDate: z.string().optional(),
-  endDate: z.string().optional(),
-  bullets: z.array(ExperienceBulletSchema),
+  company: z.string().catch(""),
+  title: z.string().catch(""),
+  startDate: z.string().catch("").optional(),
+  endDate: z.string().catch("").optional(),
+  bullets: z.array(ExperienceBulletSchema).default([]),
 });
 
 export const ProjectSchema = z.object({
-  name: z.string(),
-  description: z.string().optional(),
+  name: z.string().catch(""),
+  description: z.string().catch("").optional(),
   bullets: z.array(z.string()).optional(),
 });
 
 export const EducationSchema = z.object({
-  institution: z.string(),
-  degree: z.string(),
-  field: z.string().optional(),
-  startDate: z.string().optional(),
-  endDate: z.string().optional(),
+  institution: z.string().catch(""),
+  degree: z.string().catch(""),
+  field: z.string().catch("").optional(),
+  startDate: z.string().catch("").optional(),
+  endDate: z.string().catch("").optional(),
 });
 
 // ── Inferred Types ──────────────────────────────────────────────

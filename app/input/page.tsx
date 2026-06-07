@@ -99,8 +99,21 @@ export default function InputPage() {
       }
 
       if (!res.ok) {
-        const errData = data as { message?: string };
-        toast.error(errData?.message ?? "Could not parse this file. Try pasting the text manually.");
+        const errData = data as { message?: string; details?: Array<{path?: unknown; message?: string}> };
+        let msg = errData?.message ?? "Could not parse this file.";
+        // Append Zod details for debugging
+        if (errData?.details && Array.isArray(errData.details) && errData.details.length > 0) {
+          const reasons = errData.details
+            .map((d) => {
+              const p = d.path;
+              const path = Array.isArray(p) ? p.join(".") : "";
+              return path ? `${path}: ${d.message}` : d.message;
+            })
+            .filter(Boolean)
+            .join("; ");
+          if (reasons) msg += ` (${reasons})`;
+        }
+        toast.error(msg, { duration: 8000 });
         return;
       }
 
