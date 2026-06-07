@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -51,6 +52,11 @@ const features = [
 export default function LandingPage() {
   const router = useRouter();
   const loadMockData = useAppStore((s) => s.loadMockData);
+  const clearAll = useAppStore((s) => s.clearAll);
+
+  useEffect(() => {
+    clearAll();
+  }, [clearAll]);
 
   return (
     <main className="flex flex-col items-center px-4 py-20">

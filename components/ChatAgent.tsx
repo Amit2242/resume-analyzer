@@ -146,6 +146,7 @@ export default function ChatAgent() {
   return (
     <>
       <Button
+        type="button"
         size="lg"
         className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full shadow-xl hover:shadow-2xl"
         onClick={() => setOpen(!open)}
@@ -168,7 +169,7 @@ export default function ChatAgent() {
             </div>
           </div>
 
-          <div className="flex h-[400px] flex-col gap-3 overflow-y-auto p-4">
+          <div className="flex h-[400px] flex-col gap-3 overflow-y-auto p-4" role="log" aria-live="polite" aria-relevant="additions">
             {messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div
@@ -211,13 +212,14 @@ export default function ChatAgent() {
                 className="min-h-[40px] resize-none text-sm"
                 rows={1}
                 aria-label="Ask the assistant to edit your resume"
+                aria-describedby="chat-input-help"
               />
               <Button size="icon" className="h-10 w-10 shrink-0" disabled={!input.trim() || loading} onClick={handleSend} aria-label="Send">
                 <Send className="h-4 w-4" />
               </Button>
             </div>
-            <p className="mt-1.5 text-[10px] text-muted-foreground">
-              Ask to: add skills, rewrite bullets, update summary, add certifications
+            <p id="chat-input-help" className="mt-1.5 text-[10px] text-muted-foreground">
+              Ask to: add skills, rewrite bullets, update summary, or add certifications.
             </p>
           </div>
         </div>

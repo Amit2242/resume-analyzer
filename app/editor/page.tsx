@@ -118,7 +118,7 @@ export default function EditorPage() {
   }
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-8">
+    <main className="mx-auto max-w-6xl px-4 py-8" aria-label="Tailored resume editor">
       <StepIndicator currentStep="editor" />
 
       <div className="mb-4">
@@ -239,6 +239,7 @@ export default function EditorPage() {
 
           {/* Export Button */}
           <Button
+            type="button"
             size="lg"
             className="w-full gap-2"
             disabled={!confirmed}

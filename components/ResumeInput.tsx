@@ -34,13 +34,14 @@ export default function ResumeInput({
         <label htmlFor="resume-input" className="text-sm font-medium">
           Resume
         </label>
-        <span className="text-xs text-muted-foreground">
+        <span id="resume-char-count" className="text-xs text-muted-foreground" aria-live="polite">
           {value.length} chars
         </span>
       </div>
 
       <Textarea
         id="resume-input"
+        aria-describedby="resume-char-count resume-upload-help"
         placeholder="Paste your resume here..."
         className="min-h-[320px] resize-y font-mono text-sm"
         value={value}
@@ -64,7 +65,9 @@ export default function ResumeInput({
         disabled={isUploading}
         onClick={() => fileInputRef.current?.click()}
         aria-label="Upload a PDF or DOCX file"
+        aria-describedby="resume-upload-help"
         title="Supported: .pdf, .docx"
+        type="button"
       >
         {isUploading ? (
           <>
@@ -78,6 +81,9 @@ export default function ResumeInput({
           </>
         )}
       </Button>
+      <p id="resume-upload-help" className="text-xs text-muted-foreground">
+        Upload PDF or DOCX to auto-extract the resume text. If upload fails, paste your resume manually.
+      </p>
     </div>
   );
 }

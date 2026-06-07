@@ -16,7 +16,7 @@ import type { JobDescriptionProfile } from "@/lib/schemas";
 
 function JDSummary({ jd }: { jd: JobDescriptionProfile }) {
   return (
-    <Card>
+    <Card aria-label="Job description summary">
       <CardHeader className="pb-3">
         <CardTitle className="text-base">
           {jd.jobTitle} {jd.company ? `— ${jd.company}` : ""}
@@ -127,7 +127,7 @@ export default function AnalysisPage() {
   };
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-8">
+    <main className="mx-auto max-w-5xl px-4 py-8" aria-label="Resume analysis page">
       <StepIndicator currentStep="analysis" />
 
       <h1 className="mb-6 text-2xl font-bold">Resume Analysis</h1>

@@ -14,12 +14,13 @@ export default function JDInput({ value, onChange }: JDInputProps) {
         <label htmlFor="jd-input" className="text-sm font-medium">
           Job Description
         </label>
-        <span className="text-xs text-muted-foreground">
+        <span id="jd-char-count" className="text-xs text-muted-foreground" aria-live="polite">
           {value.length} chars
         </span>
       </div>
       <Textarea
         id="jd-input"
+        aria-describedby="jd-char-count"
         placeholder="Paste the job description here..."
         className="min-h-[320px] resize-y font-mono text-sm"
         value={value}

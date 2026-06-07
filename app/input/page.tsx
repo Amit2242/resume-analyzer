@@ -141,12 +141,12 @@ export default function InputPage() {
 
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Upload Resume & Job Description</h1>
+          <h1 className="text-2xl font-bold">Resume & Job Description Input</h1>
           <p className="text-sm text-muted-foreground">
-            Paste your resume and the job description you are targeting.
+            Paste your resume and the job description below. Use the upload button to import PDF or DOCX text automatically.
           </p>
         </div>
-        <Button variant="outline" size="sm" className="gap-2" onClick={handleLoadSample}>
+        <Button type="button" variant="outline" size="sm" className="gap-2" onClick={handleLoadSample}>
           <FileText className="h-4 w-4" />
           Load Sample
         </Button>
@@ -182,7 +182,7 @@ export default function InputPage() {
       {(store.resumeParsed || store.jdParsed) && (
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {store.resumeParsed && (
-            <div className="rounded-lg border border-border bg-card p-4">
+            <div className="rounded-lg border border-border bg-card p-4" aria-label="Parsed resume preview">
               <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Parsed Resume
               </p>
@@ -194,7 +194,7 @@ export default function InputPage() {
             </div>
           )}
           {store.jdParsed && (
-            <div className="rounded-lg border border-border bg-card p-4">
+            <div className="rounded-lg border border-border bg-card p-4" aria-label="Parsed job description preview">
               <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Parsed JD
               </p>

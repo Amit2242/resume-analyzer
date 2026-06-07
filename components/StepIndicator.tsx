@@ -12,7 +12,7 @@ const steps = [
 
 type StepKey = (typeof steps)[number]["key"];
 
-export default function StepIndicator({ currentStep }: { currentStep: string }) {
+export default function StepIndicator({ currentStep }: { currentStep: StepKey }) {
   const currentIdx = steps.findIndex((s) => s.key === currentStep);
 
   return (
@@ -27,6 +27,7 @@ export default function StepIndicator({ currentStep }: { currentStep: string }) 
             <li key={step.key} className="flex items-center gap-2">
               {/* Step circle */}
               <span
+                aria-current={isCurrent ? "step" : undefined}
                 className={cn(
                   "flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm font-medium transition-colors",
                   isComplete && "bg-primary text-primary-foreground",

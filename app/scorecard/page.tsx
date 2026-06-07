@@ -53,7 +53,7 @@ export default function ScorecardPage() {
 
   if (loading) {
     return (
-      <main className="mx-auto max-w-5xl px-4 py-8">
+      <main className="mx-auto max-w-5xl px-4 py-8" aria-label="Resume scorecard loading page">
         <StepIndicator currentStep="analysis" />
         <h1 className="mb-6 text-2xl font-bold">Resume Scorecard</h1>
         <div className="space-y-6">
@@ -77,7 +77,7 @@ export default function ScorecardPage() {
         <div className="flex flex-col items-center gap-4 rounded-xl border border-red-500/30 bg-red-500/10 p-8 text-center">
           <AlertTriangle className="h-10 w-10 text-red-400" />
           <p className="text-sm text-muted-foreground">{error ?? "Failed to analyze resume"}</p>
-          <Button variant="outline" onClick={() => { setLoading(true); setError(null); window.location.reload(); }}>
+          <Button type="button" variant="outline" onClick={() => { setLoading(true); setError(null); window.location.reload(); }}>
             Try Again
           </Button>
         </div>
@@ -95,9 +95,12 @@ export default function ScorecardPage() {
   ] as const;
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-8">
+    <main className="mx-auto max-w-5xl px-4 py-8" aria-label="Resume scorecard page">
       <StepIndicator currentStep="analysis" />
 
+      <div className="mb-4 text-sm text-muted-foreground">
+        This scorecard shows how your resume performs for recruiters and applicant tracking systems.
+      </div>
       <div className="mb-6">
         <ScoreGauge analysis={analysis} />
       </div>
@@ -144,7 +147,7 @@ export default function ScorecardPage() {
       </Tabs>
 
       <div className="flex justify-center gap-4">
-        <Button size="lg" className="gap-2" onClick={() => { store.setStep("editor"); router.push("/editor"); }}>
+        <Button type="button" size="lg" className="gap-2" onClick={() => { store.setStep("editor"); router.push("/editor"); }}>
           Continue to Tailoring
           <ArrowRight className="h-4 w-4" />
         </Button>

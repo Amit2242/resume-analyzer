@@ -83,7 +83,7 @@ const initialState = {
 };
 
 // ── Persisted Keys (whitelist) ──────────────────────────────────
-// Only persist resume/JD data. Transient flags (loading, error) stay in memory.
+// Only persist resume/JD content and results, not navigation state.
 const persistKeys: (keyof AppState)[] = [
   "resumeRaw",
   "resumeParsed",
@@ -94,7 +94,6 @@ const persistKeys: (keyof AppState)[] = [
   "originalScore",
   "gapAnalysis",
   "exportedPdfUrl",
-  "currentStep",
 ];
 
 // ── Store ───────────────────────────────────────────────────────
