@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
+import ChatAgent from "@/components/ChatAgent";
 
 export const dynamic = "force-dynamic";
 
@@ -24,6 +25,7 @@ export default function RootLayout({
         <div className="min-h-screen">
           {children}
         </div>
+        <ChatAgent />
         <Toaster position="bottom-right" richColors />
       </body>
     </html>

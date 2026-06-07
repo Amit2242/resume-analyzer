@@ -27,7 +27,14 @@ export const ExperienceSchema = z.object({
 export const ProjectSchema = z.object({
   name: z.string().catch(""),
   description: z.string().catch("").optional(),
-  bullets: z.array(z.string()).optional(),
+  bullets: z
+    .array(
+      z.union([
+        z.string(),
+        z.object({ text: z.string().catch("") }),
+      ]).transform((v) => (typeof v === "string" ? v : v.text)),
+    )
+    .optional(),
 });
 
 export const EducationSchema = z.object({
