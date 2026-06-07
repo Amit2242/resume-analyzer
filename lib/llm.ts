@@ -5,12 +5,19 @@ import OpenAI from "openai";
 import type { ZodSchema } from "zod";
 
 // ── Client ──────────────────────────────────────────────────────
+const apiKey = process.env.DEEPSEEK_API_KEY ?? "";
 const client = new OpenAI({
-  apiKey: process.env.DEEPSEEK_API_KEY ?? "your_key_here",
+  apiKey: apiKey || "sk-placeholder",
   baseURL: process.env.DEEPSEEK_BASE_URL ?? "https://api.deepseek.com",
 });
 
 const DEFAULT_MODEL = process.env.DEEPSEEK_MODEL ?? "deepseek-chat";
+
+// Redact API key from error messages for security
+function redactErrorMessage(err: unknown): string {
+  const msg = err instanceof Error ? err.message : String(err);
+  return msg.replace(/sk-[a-zA-Z0-9]+/g, "sk-...redacted");
+}
 
 // ── Sleep helper for backoff ────────────────────────────────────
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -146,8 +153,9 @@ async function callDeepSeek(
   }
 
   const latency = Date.now() - startTime;
-  console.error(`[LLM] FAILED after ${latency}ms`);
-  throw toStructuredError(lastError, "LLM_ERROR");
+    console.error(`[LLM] FAILED after ${latency}ms — ${redactErrorMessage(lastError)}`);
+  const redactedMsg = redactErrorMessage(lastError);
+  throw toStructuredError(new Error(redactedMsg), "LLM_ERROR");
 }
 
 // ── Public: Validated JSON call ─────────────────────────────────
@@ -171,7 +179,7 @@ export async function callLLM<T>(
   try {
     parsed = JSON.parse(jsonText);
   } catch (err) {
-    console.error("[LLM] JSON parse failed. Raw response (truncated):", rawText.slice(0, 500));
+    console.error("[LLM] JSON parse failed. Response length:", rawText.length);
     throw toStructuredError(err, "PARSE_ERROR", { rawSnippet: rawText.slice(0, 500) });
   }
 

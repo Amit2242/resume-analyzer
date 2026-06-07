@@ -68,6 +68,14 @@ export async function POST(request: Request) {
       );
     }
 
+    // Security: limit message length to prevent abuse
+    if (body.message.length > 5000) {
+      return NextResponse.json(
+        { error: true, code: "PARSE_ERROR", message: "Message too long (max 5000 characters)." },
+        { status: 422 },
+      );
+    }
+
     const sessionId = body.sessionId ?? `session_${ip}`;
 
     // ── Build Conversation ─────────────────────────────────────

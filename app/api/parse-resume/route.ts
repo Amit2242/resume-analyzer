@@ -29,6 +29,14 @@ export async function POST(request: Request) {
 
     if (body.fileBase64 && body.fileType) {
       // File upload path — decode base64 and extract text
+      // Security: limit file size to 10MB
+      const decodedSize = Buffer.byteLength(body.fileBase64, "utf-8");
+      if (decodedSize > 10_485_760) {
+        return NextResponse.json(
+          { error: true, code: "PARSE_ERROR", message: "File is too large. Maximum size is 10MB." },
+          { status: 413 },
+        );
+      }
       try {
         rawText = await extractTextFromFile(body.fileBase64, body.fileType);
       } catch (fileErr) {
