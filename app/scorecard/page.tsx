@@ -29,7 +29,7 @@ export default function ScorecardPage() {
     const runAnalysis = async () => {
       const resume = resumeParsed ?? MOCK_RESUME;
       try {
-        const res = await fetch("/api/analyze-resume", {
+        const res = await fetch("/api/analyzeResume", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ resume }),

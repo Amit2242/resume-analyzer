@@ -84,7 +84,7 @@ export default function InputPage() {
         reader.readAsDataURL(file);
       });
 
-      const res = await fetch("/api/parse-resume", {
+      const res = await fetch("/api/parseResume", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ fileBase64: base64, fileType }),

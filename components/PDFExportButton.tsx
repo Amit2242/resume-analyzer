@@ -26,7 +26,7 @@ export default function PDFExportButton({ label, variant = "default" }: PDFExpor
     store.setError(null);
 
     try {
-      const res = await fetch("/api/export-pdf", {
+      const res = await fetch("/api/exportPdf", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

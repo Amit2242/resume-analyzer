@@ -137,7 +137,7 @@ export const useAppStore = create<AppState>()(
         }
         set({ isLoading: true, error: null });
         try {
-          const res = await fetch("/api/parse-resume", {
+          const res = await fetch("/api/parseResume", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ text: resumeRaw }),
@@ -158,7 +158,7 @@ export const useAppStore = create<AppState>()(
         if (!jdRaw) return;
         set({ isLoading: true, error: null });
         try {
-          const res = await fetch("/api/parse-jd", {
+          const res = await fetch("/api/parseJd", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ text: jdRaw }),
@@ -185,7 +185,7 @@ export const useAppStore = create<AppState>()(
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ resume: resumeParsed, jd: jdParsed }),
             }),
-            fetch("/api/gap-analysis", {
+            fetch("/api/gapAnalysis", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ resume: resumeParsed, jd: jdParsed }),
@@ -275,7 +275,7 @@ export const useAppStore = create<AppState>()(
         set({ isExporting: true, error: null });
         try {
           const { resumeParsed, tailoredResume, originalScore, tailoredScore, gapAnalysis, jdParsed } = get();
-          const res = await fetch("/api/export-pdf", {
+          const res = await fetch("/api/exportPdf", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

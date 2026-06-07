@@ -25,9 +25,7 @@ const securityHeaders = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "standalone",
-  experimental: {
-    serverComponentsExternalPackages: ["puppeteer"],
-  },
+  serverExternalPackages: ["puppeteer"],
   async headers() {
     return [
       {
